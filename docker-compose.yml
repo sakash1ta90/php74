@@ -9,6 +9,8 @@ services:
       - ./src:/work
       - ./php/php.ini:/usr/local/etc/php/php.ini
     working_dir: /work
+    environment:
+      - TZ=${TZ:-Asia/Tokyo}
 
   web:
     image: nginx:1.17-alpine

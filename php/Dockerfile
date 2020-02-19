@@ -6,6 +6,8 @@ SHELL ["/bin/ash", "-oeux", "pipefail", "-c"]
 ENV COMPOSER_ALLOW_SUPERUSER 1
 ENV COMPOSER_HOME /composer
 
+ARG TZ
+
 RUN apk update && \
   apk add --update --no-cache --virtual=.build-dependencies \
     autoconf=~2.69 \
@@ -14,6 +16,8 @@ RUN apk update && \
     make=~4.2 \
     tzdata=2019c-r0 \
     git=~2.24 && \
+  cp /usr/share/zoneinfo/Asia/Tokyo /etc/localtime && \
+  echo ${TZ} > /etc/timezone && \
   apk add --update --no-cache \
     oniguruma-dev=~6.9 && \
   pecl install xdebug && \
