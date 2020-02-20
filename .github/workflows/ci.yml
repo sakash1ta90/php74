@@ -1,0 +1,13 @@
+name: docker-compose-actions-workflow
+on: push
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Build the stack
+        run: make up
+      - name: Put Test File
+        run: echo '<?php phpinfo();' > src/public/index.php
+      - name: Do Test
+        run: /usr/bin/env curl -s --retry 10 --retry-connrefused http://localhost:10080/
