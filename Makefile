@@ -3,9 +3,6 @@ up:
 	docker-compose up -d
 build:
 	docker-compose build
-reinstall:
-	@make destroy
-	@make install
 stop:
 	docker-compose stop
 restart:
