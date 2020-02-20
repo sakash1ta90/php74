@@ -1,11 +1,15 @@
-up: .env.example
+setenv: .env.example
 	@cp .env.example .env
+up:
+	@make setenv
 	@docker-compose up -d
 build: docker-compose.yml
+	@make setenv
 	@docker-compose build
 stop: docker-compose.yml
 	@docker-compose stop
 restart: docker-compose.yml
+	@make setenv
 	@docker-compose restart
 down: docker-compose.yml
 	@docker-compose down
