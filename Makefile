@@ -1,15 +1,15 @@
-up:
+up: .env.example
 	@cp .env.example .env
 	@docker-compose up -d
-build:
+build: docker-compose.yml
 	@docker-compose build
-stop:
+stop: docker-compose.yml
 	@docker-compose stop
-restart:
+restart: docker-compose.yml
 	@docker-compose restart
-down:
+down: docker-compose.yml
 	@docker-compose down
-destroy:
+destroy: docker-compose.yml
 	@docker-compose down --rmi all --volumes
 ps:
 	@docker-compose ps
