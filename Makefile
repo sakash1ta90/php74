@@ -30,4 +30,4 @@ app: ## execコマンドの実行
 	@docker-compose exec app ash -l
 .PHONY: local
 local: ## ローカルサーバの実行
-	@/usr/bin/env php -S localhost:8080
+	@/usr/bin/env php -S localhost:8080 -t src/public
