@@ -1,33 +1,33 @@
 .PHONY: help
-help: ## this description
+help: ## ヘルプを表示する
 	@grep -E '^[0-9a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
-setenv: .env.example ## setup .env file
+setenv: .env.example ## .envファイルをexampleから生成する
 	@cp .env.example .env
-up: docker-compose.yml ## exec 'docker-compose up -d'
+up: docker-compose.yml ## 'docker-compose up -d' を実行する
 	@make setenv
 	@docker-compose up -d
-build: docker-compose.yml ## build container
+build: docker-compose.yml ## コンテナをビルドする
 	@make setenv
 	@docker-compose build
 .PHONY: stop
-stop: docker-compose.yml ## stop container
+stop: docker-compose.yml ## コンテナを停止する
 	@docker-compose stop
 .PHONY: restart
-restart: docker-compose.yml ## restart container
+restart: docker-compose.yml ## コンテナを再起動する
 	@make setenv
 	@docker-compose restart
 .PHONY: down
-down: docker-compose.yml ## down container
+down: docker-compose.yml ## コンテナを停止する
 	@docker-compose down
 .PHONY: destroy
-destroy: docker-compose.yml ## cleanup image and container
+destroy: docker-compose.yml ## コンテナの停止とイメージの削除
 	@docker-compose down --rmi all --volumes
 .PHONY: ps
-ps: ## ps command
+ps: ## psコマンドの実行
 	@docker-compose ps
 .PHONY: app
-app: ## exec command
+app: ## execコマンドの実行
 	@docker-compose exec app ash -l
 .PHONY: local
-local: ## execute local server
+local: ## ローカルサーバの実行
 	@/usr/bin/env php -S localhost:8080
