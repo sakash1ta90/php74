@@ -10,4 +10,4 @@ jobs:
       - name: Put Test File
         run: mkdir src/public && echo '<?php phpinfo();' > src/public/index.php
       - name: Do Test
-        run: sleep1;curl -s --retry 10 --retry-connrefused http://127.0.0.1:10080/
+        run: sleep 1;curl -s --retry 10 --retry-connrefused http://127.0.0.1:10080/
