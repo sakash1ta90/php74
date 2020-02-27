@@ -1,0 +1,10 @@
+version: '3.7'
+services:
+  php74:
+    container_name: php74
+    build:
+      context: ./php
+      args:
+        - TZ=${TZ:-Asia/Tokyo}
+    environment:
+      - TZ=${TZ:-Asia/Tokyo}

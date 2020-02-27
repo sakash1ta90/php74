@@ -5,7 +5,10 @@ setenv: .env.example ## .envファイルをexampleから生成する
 	@cp .env.example .env
 up: docker-compose.yml ## 'docker-compose up -d' を実行する
 	@make setenv
+	@docker-compose -f php.yml build
+	@docker-slim b php_php74 --continue-after 1
 	@docker-compose up -d
+	@docker rmi php_php74
 build: docker-compose.yml ## コンテナをビルドする
 	@make setenv
 	@docker-compose build

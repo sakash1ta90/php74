@@ -14,13 +14,13 @@ RUN apk update && \
     gcc=~9.2 \
     g++=~9.2 \
     make=~4.2 \
-    tzdata=2019c-r0 \
     git=~2.24 && \
-  apk add --update --no-cache oniguruma-dev=~6.9 && \
+  apk add --update --no-cache oniguruma-dev=~6.9 \
+    tzdata && \
   cp /usr/share/zoneinfo/Asia/Tokyo /etc/localtime && \
   echo ${TZ} > /etc/timezone && \
   pecl install xdebug && \
-  apk del .build-dependencies && \
+  apk del .build-dependencies tzdata && \
   docker-php-ext-install pdo_mysql mysqli mbstring && \
   docker-php-ext-enable xdebug && \
   curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin --filename=composer && \
