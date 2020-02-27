@@ -1,16 +1,20 @@
 version: '3.7'
 services:
   app:
-    container_name: app
-    image: php_app.slim
+    container_name: php-app
+    build:
+      context: ./php
+      args:
+        - TZ=${TZ:-Asia/Tokyo}
     volumes:
       - ./src:/work
+      - ./php/php.ini:/usr/local/etc/php/php.ini
     working_dir: /work
     environment:
       - TZ=${TZ:-Asia/Tokyo}
 
   web:
-    container_name: web
+    container_name: php-web
     image: nginx:1.17-alpine
     depends_on:
       - app
