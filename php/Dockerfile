@@ -14,7 +14,7 @@ RUN apk update && \
     gcc \
     g++ \
     make \
-    git=~2.24 && \
+    git && \
   apk add --update --no-cache oniguruma-dev=~6.9 \
     libzip-dev \
     tzdata && \
