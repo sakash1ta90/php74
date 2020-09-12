@@ -13,7 +13,7 @@ RUN apk update && \
     autoconf=~2.69 \
     gcc \
     g++ \
-    make=~4.2 \
+    make \
     git=~2.24 && \
   apk add --update --no-cache oniguruma-dev=~6.9 \
     libzip-dev \
