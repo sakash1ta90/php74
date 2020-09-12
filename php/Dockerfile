@@ -16,7 +16,7 @@ RUN apk update && \
     make=~4.2 \
     git=~2.24 && \
   apk add --update --no-cache oniguruma-dev=~6.9 \
-    zip zlib-dev libzip-dev \
+    libzip-dev \
     tzdata && \
   cp /usr/share/zoneinfo/Asia/Tokyo /etc/localtime && \
   echo ${TZ} > /etc/timezone && \
