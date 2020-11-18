@@ -5,6 +5,7 @@ SHELL ["/bin/ash", "-oeux", "pipefail", "-c"]
 # composer
 ENV COMPOSER_ALLOW_SUPERUSER 1
 ENV COMPOSER_HOME /composer
+ENV PATH $PATH:/composer/vendor/bin
 
 ARG TZ
 
@@ -25,6 +26,5 @@ RUN apk update && \
   docker-php-ext-install pdo_mysql mysqli mbstring zip && \
   docker-php-ext-enable xdebug && \
   curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin --filename=composer && \
-  composer global require hirak/prestissimo && \
   composer config -g process-timeout 3600 && \
   composer config -g repos.packagist composer https://packagist.jp
